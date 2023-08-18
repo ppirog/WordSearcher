@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] wordSearch = new int[][]{
-                {'o', 'k', 'o', 'ń', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k'},
-                {'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o'},
-                {'o', 'k', 'o', 'ń', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v'},
+        char[][] wordSearch = new char[][]{
+                {'e', 'k', 'o', 'ń', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k'},
+                {'o', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o'},
+                {'p', 'k', 'o', 'ń', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v'},
                 {'m', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h'},
                 {'p', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'j'},
                 {'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k'},
@@ -33,15 +33,14 @@ public class Main {
                 {'m', 'l', 'k', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'i', 'h'},
                 {'p', 'o', 'e', 'e', 'j', 'j', 'ń', 'o', 'k', 'o', 'w', 'i', 'n', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'p'}
         };
-        List<Word> words = detectAllWords(wordSearch, "pingwiny","inoe");// write words to search here
-        for(Word w : words){
+        List<Word> words = detectAllWords(wordSearch, "pingwiny", "inoe","poe");// write words to search here
+        for (Word w : words) {
             System.out.println(w);
         }
     }
 
 
-
-    public static boolean nextElementExist(int[][] wordSearch, int row, int col, HorizontalDirection horizontal, VerticalDirection vertical) {
+    public static boolean nextElementExist(char[][] wordSearch, int row, int col, HorizontalDirection horizontal, VerticalDirection vertical) {
         int rowLenght = wordSearch.length - 1;
         int colLenght = wordSearch[0].length - 1;
         //        System.out.println((char) wordSearch[currentRow][currentCol]);
@@ -65,7 +64,7 @@ public class Main {
         return true;
     }
 
-    public static boolean canAddWord(char[] arr, int[][] wordSearch, int i, int j, HorizontalDirection horizontal, VerticalDirection vertical) {
+    public static boolean canAddWord(char[] arr, char[][] wordSearch, int i, int j, HorizontalDirection horizontal, VerticalDirection vertical) {
         boolean temp = true;
         if (horizontal.equals(HorizontalDirection.RIGHT) && vertical.equals(VerticalDirection.NOWHERE)) {
             for (int k = 0; k < arr.length; ) {
@@ -224,7 +223,7 @@ public class Main {
         return temp;
     }
 
-    public static List<Word> detectAllWords(int[][] wordSearch, String... words) {
+    public static List<Word> detectAllWords(char[][] wordSearch, String... words) {
         List<Word> wordArrayList = new ArrayList<>();
         for (String w : words) {
             if (w.isEmpty()) {
