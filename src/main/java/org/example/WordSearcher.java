@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Main {
+public class WordSearcher {
     public static void main(String[] args) {
+
         char[][] wordSearch = new char[][]{
                 {'e', 'k', 'o', 'ń', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k', 'f', 'd', 'e', 'r', 'l', 'k'},
                 {'o', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o'},
@@ -31,12 +32,30 @@ public class Main {
                 {'u', 's', 'a', 'm', 'ń', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'a', 'm', 'e', 'o', 'u', 's', 'g', 'm', 'e', 'o'},
                 {'l', 'n', 'g', 'o', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'r', 'o', 'v', 'l', 'n', 'g', 'n', 'o', 'v'},
                 {'m', 'l', 'k', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'r', 'h', 'm', 'l', 'p', 'r', 'i', 'h'},
-                {'p', 'o', 'e', 'e', 'j', 'j', 'ń', 'o', 'k', 'o', 'w', 'i', 'n', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'p'}
+                {'p', 'i', 'n', 'g', 'w', 'i', 'n', 'y', 'k', 'o', 'w', 'i', 'n', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'j', 'p', 'o', 'e', 'e', 'j', 'p'}
         };
-        List<Word> words = detectAllWords(wordSearch, "pingwiny", "inoe","poe");// write words to search here
+        List<Word> words = detectAllWords(wordSearch, "pingwiny", "inoe", "poe", "usam", "rov");// write words to search here
         for (Word w : words) {
             System.out.println(w);
         }
+
+
+        /**
+         char[][] wordSearch = new char[][]{
+         {'e', 'k', 'o'},
+         {'a', 'a', 'a'},
+         {'u', 'i', 'y'},
+         };
+
+
+         List<Word> words = detectAllWords(wordSearch, "a");
+         for (Word w : words) {
+         System.out.println(w);
+         }
+
+         */
+
+
     }
 
 
@@ -232,6 +251,14 @@ public class Main {
             char[] arr = w.toCharArray();
             for (int i = 0; i < wordSearch.length; ++i) {
                 for (int j = 0; j < wordSearch[0].length; ++j) {
+                    if (arr.length == 1 && wordSearch[i][j] == arr[0]) {
+                        Word word = new Word(w);
+                        word.setStartPoint(j, i);
+                        word.setEndPoint(j, i);
+                        wordArrayList.add(word);
+                        continue;
+                    }
+
                     if (wordSearch[i][j] == arr[0]) {
                         if (nextElementExist(wordSearch, i, j, HorizontalDirection.RIGHT, VerticalDirection.NOWHERE)) {
                             //TODO check rest of word letters
@@ -317,7 +344,6 @@ public class Main {
                             }
                         }
                     }
-
                 }
             }
         }
