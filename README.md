@@ -22,3 +22,7 @@ ely - Start (Col: 0, Row: 0) - End (Col: 2, Row:  2)
 ooy - Start (Col: 2, Row: 0) - End (Col: 2, Row:  2)
 
 yoo - Start (Col: 2, Row: 2) - End (Col: 2, Row:  0)
+
+# Tech stack
+1) Java
+2) JUnit
